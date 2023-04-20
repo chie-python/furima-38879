@@ -11,15 +11,13 @@
 | name2                 | string           | null: false     |
 | name_kana1            | string           | null: false     |
 | name_kana2            | string           | null: false     |
-| birth_year            | integer          | null: false     |
-| birth_month           | integer          | null: false     |
-| birth_day             | integer          | null: false     |
+| birthday              | date             | null: false     |
+
 
 
 ### Association
 - has_many :items
 - has_many :orders
-- has_many :comments
 
 
 
@@ -29,76 +27,51 @@
 |---------------------|------------------|------------------------------------|
 | item_image          | string           | null: false                        |
 | item_name           | string           | null: false                        |
-| item_description    | string           | null: false                        |
-| item_category       | string           | null: false                        |
-| item_condition      | string           | null: false                        |
-| shipping_charges    | string           | null: false                        |
-| ship_area           | string           | null: false                        |
-| ship_day            | integer          | null: false                        |
+| item_description    | text             | null: false                        |
+| item_category_id    | integer          | null: false                        |
+| item_condition_id   | integer          | null: false                        |
+| shipping_charge_id  | integer          | null: false                        |
+| ship_area_id        | integer          | null: false                        |
+| ship_day_id         | integer          | null: false                        |
 | price               | integer          | null: false                        |
 | sales_commission    | integer          | null: false                        |
 | sales_profit        | integer          | null: false                        |
-| user_id             | references       | null: false, foreign_key: true     |
-| order_id            | references       | null: false, foreign_key: true     |
-| Item_categories_id  | references       | null: false, foreign_key: true     |
-| Item_conditions_id  | references       | null: false, foreign_key: true     |
-| item_opened         | integer          | null: false                        |
+| user                | references       | null: false, foreign_key: true     |
+
 
 
 ### Association
 - belongs_to :user
-- belongs_to :order
-- has_many :comments
+- has_one :order
 
 
 
 ## Orders  テーブル
 
+|Column                 |Type              |Options                             |
+|-----------------------|------------------|------------------------------------|
+| user                  | references       | null: false, foreign_key: true     |
+| item                  | references       | null: false, foreign_key: true     |
+
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :ship_adress
+
+
+
+## Ship_Adresses  テーブル
+
 |Column                    |Type              |Options                             |
 |--------------------------|------------------|------------------------------------|
-| card_number              | integer          | null: false                        |
-| card_effective_date      | integer          | null: false                        |
-| card_cvc                 | integer          | null: false                        |
-| ship_postnum             | integer          | null: false                        |
+| ship_postalcode          | integer          | null: false                        |
 | ship_region              | string           | null: false                        |
 | ship_city                | string           | null: false                        |
 | ship_building            | string           |                                    |
-| ship_phonenum            | integer          | null: false                        |
-| user_id                  | references       | null: false, foreign_key: true     |
-| item_id                  | references       | null: false, foreign_key: true     |
+| ship_phonenum            | integer          | null: false, foreign_key: true     |
+| order                    | references       | nill: false, foreign_key: true     |
 
 
 ### Association
-- belongs_to :user
-- belongs_to :item
-
-
-
-## Comments  テーブル
-
-|Column                 |Type              |Options                             |
-|-----------------------|------------------|------------------------------------|
-| comment               | string           | null: false                        |
-| name                  | string           | null: false                        |
-| item_id               | references       | null: false, foreign_key: true     |
-
-
-### Association
-- belongs_to :user
-- belongs_to :item
-
-
-
-## Item_categories  テーブル
-
-|Column                 |Type              |Options          |
-|-----------------------|------------------|-----------------|
-| category              | string           | null: false     |
-
-
-## Item_conditions  テーブル
-
-|Column                 |Type              |Options          |
-|-----------------------|------------------|-----------------|
-| condition             | string           | null: false     |
-
+- belongs_to :order
