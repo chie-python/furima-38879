@@ -2,16 +2,16 @@
 
 ## Users  テーブル
 
-|Column                 |Type              |Options          |
-|-----------------------|------------------|-----------------|
-| nickname              | string           | null: false     |
-| email                 | string           | unique: true    |
-| encrypted_password    | string           | null: false     |
-| name1                 | string           | null: false     |
-| name2                 | string           | null: false     |
-| name_kana1            | string           | null: false     |
-| name_kana2            | string           | null: false     |
-| birthday              | date             | null: false     |
+|Column                 |Type              |Options                       |
+|-----------------------|------------------|------------------------------|
+| nickname              | string           | null: false                  |
+| email                 | string           | null: false, unique: true    |
+| encrypted_password    | string           | null: false                  |
+| first_name            | string           | null: false                  |
+| last_name             | string           | null: false                  |
+| first_name_kana       | string           | null: false                  |
+| last_name_kana        | string           | null: false                  |
+| birthday              | date             | null: false                  |
 
 
 
@@ -62,13 +62,13 @@
 
 |Column                    |Type              |Options                             |
 |--------------------------|------------------|------------------------------------|
-| ship_postalcode          | integer          | null: false                        |
+| ship_postalcode          | string           | null: false                        |
 | ship_area_id             | integer          | null: false                        |
 | ship_city                | string           | null: false                        |
 | ship_house_number        | string           | null: false                        |
 | ship_building_name       | string           |                                    |
-| ship_phone_number        | integer          | null: false                        |
-| order                    | references       | nill: false, foreign_key: true     |
+| ship_phone_number        | string           | null: false                        |
+| order                    | references       | null: false, foreign_key: true     |
 
 
 ### Association
