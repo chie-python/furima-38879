@@ -54,15 +54,15 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :ship_adress
+- has_one :ship_address
 
 
 
-## Ship_Adresses  テーブル
+## Ship_Addresses  テーブル
 
 |Column                    |Type              |Options                             |
 |--------------------------|------------------|------------------------------------|
-| ship_postalcode          | string           | null: false                        |
+| ship_postal_code          | string           | null: false                        |
 | ship_area_id             | integer          | null: false                        |
 | ship_city                | string           | null: false                        |
 | ship_house_number        | string           | null: false                        |
