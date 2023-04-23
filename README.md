@@ -62,7 +62,7 @@
 
 |Column                    |Type              |Options                             |
 |--------------------------|------------------|------------------------------------|
-| ship_postal_code          | string           | null: false                        |
+| ship_postal_code         | string           | null: false                        |
 | ship_area_id             | integer          | null: false                        |
 | ship_city                | string           | null: false                        |
 | ship_house_number        | string           | null: false                        |
