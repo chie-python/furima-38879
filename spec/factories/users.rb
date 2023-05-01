@@ -11,7 +11,7 @@ FactoryBot.define do
     last_name_kana {person.last.katakana}
     birthday {Faker::Date.birthday}
     email {Faker::Internet.free_email}
-    password {Faker::Internet.password(min_length: 6)}
+    password {"a1" + Faker::Internet.password(min_length: 6)}
     password_confirmation {password}
   end
 end
