@@ -8,10 +8,14 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
+
+  validates :item_name, presence: true
+  validates :item_description, presence: true
   validates :item_category_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :item_condition_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_charge_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :ship_area_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :ship_day_id, numericality: { other_than: 1, message:"can't be blank" }
+  validates :ship_day_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :price, presence: true
 
 end
