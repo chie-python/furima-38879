@@ -8,7 +8,6 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-
   validates :item_name, presence: true
   validates :item_description, presence: true
   validates :item_category_id, numericality: { other_than: 1, message: "can't be blank" }
@@ -16,6 +15,6 @@ class Item < ApplicationRecord
   validates :shipping_charge_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :ship_area_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :ship_day_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :price, presence: true
-
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ }
+  validates :image, presence: true
 end
