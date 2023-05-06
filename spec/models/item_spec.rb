@@ -92,10 +92,15 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
-      it "price英数混合では登録できない" do
+      it "priceが英数混合では登録できない" do
         @item.price = "300yen"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it "priceが小数では登録できない" do
+        @item.price = "333.3"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be an integer")
       end
       it "画像が１枚もない場合は登録できない" do
         @item.image = nil
