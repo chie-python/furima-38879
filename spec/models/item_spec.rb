@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build_stubbed(:item)
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品出品登録' do
@@ -103,9 +103,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it "userが紐付いていなければ出品できない" do
-        @item.user_id = nil
+        @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('User must exist', "User can't be blank")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
