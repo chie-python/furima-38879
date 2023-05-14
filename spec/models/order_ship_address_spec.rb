@@ -10,6 +10,10 @@ RSpec.describe OrderShipAddress, type: :model do
       it '全ての値が入力されていれば登録できる' do
         expect(@order).to be_valid
       end
+      it '電話番号が10桁でも登録できる' do
+        @order.user_id = 1234567890
+        expect(@order).to be_valid
+      end
     end
     context '購入内容が保存できないとき' do
       it 'user_idが空白では登録できない' do
@@ -62,10 +66,20 @@ RSpec.describe OrderShipAddress, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Ship phone number is invalid")
       end
+      it '電話番号が10桁より少ないと登録できない' do
+        @order.ship_phone_number = 123456789
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Ship phone number is invalid")
+      end
       it '電話番号にハイフンがあると登録できない' do
         @order.ship_phone_number = 123-4567-8912
         @order.valid?
         expect(@order.errors.full_messages).to include("Ship phone number is invalid")
+      end
+      it 'tokenが空だと登録できない' do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
