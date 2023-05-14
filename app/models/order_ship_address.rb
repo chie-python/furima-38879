@@ -1,6 +1,7 @@
 class OrderShipAddress
   include ActiveModel::Model
-  attr_accessor :ship_postal_code, :ship_area_id, :ship_city, :ship_house_number, :ship_building_name, :ship_phone_number, :user_id, :item_id
+  attr_accessor :ship_postal_code, :ship_area_id, :ship_city, :ship_house_number, :ship_building_name, :ship_phone_number, :user_id, :item_id, :token
+
 
   with_options presence: true do
     validates :user_id

@@ -1,32 +1,29 @@
 const pay = () => {
-  const payjp = Payjp('pk_test_1479085c6cd8d69d8eba2ac6');
+  const payjp = Payjp(process.env.PAYJP_PUBLIC_KEY);
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
-  const expiryMonthElement = elements.create('cardExpiry');    //月
-  const expiryYearElement = elements.create('cardExpiry');     //年
+  const expiryElement = elements.create('cardExpiry');
   const cvcElement = elements.create('cardCvc');
 
-  numberElement.mount('card-number');
-  expiryMonthElement.mount('card-exp-month');
-  expiryYearElement.mount('card-exp-year');
-  cvcElement.mount('card-cvc');
+  numberElement.mount('#card-number');
+  expiryElement.mount('#expiry-form');
+  cvcElement.mount('#card-cvc');
 
   const submit = document.getElementById("button");
 
   submit.addEventListener("click", (e) => {
     e.preventDefault();
+    console.log("フォーム送信時にイベント発火")
     payjp.createToken(numberElement).then(function (response){
       if (response.error) {
       } else {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input values=${token} name='token'>`;
+        const tokenObj = `<input value=${token} name='token' type="hidden" >`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-        debugger;
       }
       numberElement.clear();
-      expiryMonthElement.clear();
-      expiryYearElement.clear();
+      expiryElement.clear();
       cvcElement.clear();
       document.getElementById("charge-form").submit();
     });
