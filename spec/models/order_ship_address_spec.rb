@@ -2,16 +2,22 @@ require 'rails_helper'
 
 RSpec.describe OrderShipAddress, type: :model do
   before do
+    @item = FactoryBot.build(:item)
+    @user = FactoryBot.build(:user)
     @order = FactoryBot.build(:order_ship_address)
   end
 
   describe '購入内容の登録' do
     context '購入内容が保存できるとき' do
       it '全ての値が入力されていれば登録できる' do
+        @order.user_id = 1
+        @order.item_id = 1
         expect(@order).to be_valid
       end
       it '電話番号が10桁でも登録できる' do
-        @order.user_id = 1234567890
+        @order.user_id = 1
+        @order.item_id = 1
+        @order.ship_phone_number = 1234567890
         expect(@order).to be_valid
       end
     end
