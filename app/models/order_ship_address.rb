@@ -7,7 +7,7 @@ class OrderShipAddress
     validates :user_id
     validates :item_id
     validates :ship_postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :ship_area_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :ship_area_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :ship_city
     validates :ship_house_number
     validates :ship_phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid' }

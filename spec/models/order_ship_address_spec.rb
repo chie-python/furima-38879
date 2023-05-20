@@ -47,8 +47,8 @@ RSpec.describe OrderShipAddress, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Ship area can't be blank", "Ship area can't be blank")
       end
-      it '都道府県idが0(---)では登録できない' do
-        @order.ship_area_id = 0
+      it '都道府県idが1(---)では登録できない' do
+        @order.ship_area_id = 1
         @order.valid?
         expect(@order.errors.full_messages).to include("Ship area can't be blank")
       end
